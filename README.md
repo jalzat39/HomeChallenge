@@ -42,7 +42,7 @@ The performance tests are in the "src/test/javascript" path, which was tested wi
   ```
 
   - **Overall Performance:** The test executed successfully with no failed checks and very low average response times, indicating a well-performing system under the specified load.
-  - **Scalability and Load Handling:** Your system handled 20 virtual users effectively, with minimal latency and no errors.
+  - **Scalability and Load Handling:** The system handled 20 virtual users effectively, with minimal latency and no errors.
   - **Network Load:** The amount of data exchanged is reasonable given the volume of requests.
 
  - In the second one, executed against the login API for valid credentials we had the following result:
