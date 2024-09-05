@@ -1,8 +1,10 @@
+To execute the project you need to run the command in the terminal *mvn package jetty:run -DskipTests*
 # API Testing
 Everything related to the tests performed on the APIs provided by the application is found in the folder with the path *src/test/java*, in which the Pet and User APIs are validated, both for good cases and edge cases. To execute these tests, the Java language was used with the Rest Assured tool.
 We can see with the execution of the suite a good implementation except for the part of Logging in with an incorrect password, but correct username, that the status code is 200 instead of 400.
 
-# Performance Tests
+# Performance Tests 
+(To run the tests you need to be in the JavaScript folder and place the command *k6 run loadtestpet.js*)
 The performance tests may seem somewhat simple and only 3, although I know the JavaScript language, I had not used the k6 tool, this was my first approach, made especially for the challenge.
 The performance tests are in the "src/test/javascript" path, which was tested with a medium load, which can be scaled, and the JavaScript language was used with the k6 tool.
 - In the first test we have a load test against the API that allows us to create users, giving the result of:
