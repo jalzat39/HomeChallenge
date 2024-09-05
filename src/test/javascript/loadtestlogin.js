@@ -10,11 +10,45 @@ export const options = {
     ],
 };
 
+// Define a function to generate random user data
+function generateUserData() {
+    const randomNum = Math.floor(Math.random() * 1000) + 1;
+    return {
+        id: randomNum,
+        username: `testuser${randomNum}`,
+        firstName: `FirstName${randomNum}`,
+        lastName: `LastName${randomNum}`,
+        email: `user${randomNum}@example.com`,
+        password: `testpassword`,
+        phone: `1234567890`,
+        userStatus: 1,
+    };
+}
+
 export default function () {
+    // Generate user data
+    const userData = generateUserData();
+
+    // Define the user creation request payload and options
+    const userPayload = JSON.stringify(userData);
+    const userOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    // Perform the user creation request
+    const userResponse = http.post('http://localhost:8080/api/v3/user', userPayload, userOptions);
+
+    // Check the user creation response
+    check(userResponse, {
+        'User creation status is 200': (r) => r.status === 200,
+    });
+
     // Define the login request payload
     const loginPayload = JSON.stringify({
-        username: 'testuser',
-        password: 'testpassword',
+        username: userData.username,
+        password: userData.password,
     });
 
     // Define the login request options
@@ -25,14 +59,14 @@ export default function () {
     };
 
     // Perform the login request
-    const response = http.post('http://localhost:8080/api/v3/user/login', loginPayload, loginOptions);
+    const loginResponse = http.post('http://localhost:8080/api/v3/user/login', loginPayload, loginOptions);
 
-    // Check the response
-    check(response, {
-        'status is 200': (r) => r.status === 200,
-        'response time < 200ms': (r) => r.timings.duration < 200,
+    // Check the login response
+    check(loginResponse, {
+        'Login status is 200': (r) => r.status === 200,
+        'Response time < 200ms': (r) => r.timings.duration < 200,
     });
 
-    // Sleep for a short period to simulate user think time
+    // Simulate user think time
     sleep(1);
 }
